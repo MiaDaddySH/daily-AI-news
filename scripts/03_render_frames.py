@@ -115,14 +115,6 @@ def draw_source_visual_chips(draw, source, visual, meta_font):
     )
 
 
-# def draw_keyword_stack(draw, keywords, body_font):
-#     draw.text((RIGHT_RAIL_X, 238), "关键词", font=body_font, fill=(255, 255, 255, 255))
-#     for index, keyword in enumerate(keywords[:4]):
-#         y = 290 + index * 92
-#         draw.rounded_rectangle((RIGHT_RAIL_X, y, RIGHT_RAIL_RIGHT, y + 62), radius=24, fill=(255, 255, 255, 28))
-#         draw.text((RIGHT_RAIL_X + 30, y + 14), keyword, font=body_font, fill=(238, 240, 244, 255))
-
-
 def draw_keyword_stack(draw, keywords, body_font, meta_font):
     if not keywords:
         return
@@ -155,54 +147,44 @@ def draw_keyword_stack(draw, keywords, body_font, meta_font):
         )
 
 
-# def draw_fact_stack_vertical(draw, facts, small_font, start_y):
-#     if not facts:
-#         return
-
-#     box_left = LEFT_TEXT_X
-#     box_right = CARD_RIGHT - 90
-#     for index, fact in enumerate(facts[:3]):
-#         y = start_y + index * 98
-#         draw.rounded_rectangle(
-#             (box_left, y, box_right, y + 78), radius=20, fill=(255, 255, 255, 20)
-#         )
-#         lines = wrap_cjk_text(draw, fact, small_font, box_right - box_left - 40)
-#         line_y = y + 18
-#         for line in lines[:2]:
-#             draw.text(
-#                 (box_left + 20, line_y),
-#                 line,
-#                 font=small_font,
-#                 fill=(232, 238, 245, 255),
-#             )
-#             line_y += 30
-
-
 def draw_fact_stack_vertical(draw, facts, small_font, start_y):
     if not facts:
         return
 
     box_left = LEFT_TEXT_X
     box_right = CARD_RIGHT - 90
+    max_width = box_right - box_left - 40
 
-    for index, fact in enumerate(facts[:3]):
-        y = start_y + index * 98
+    line_spacing = 38
+    inner_top = 16
+    inner_bottom = 16
+    item_gap = 18
+
+    current_y = start_y
+
+    for fact in facts[:3]:
+        lines = wrap_cjk_text(draw, fact, small_font, max_width)[:2]
+        line_count = max(1, len(lines))
+
+        box_height = inner_top + inner_bottom + line_count * line_spacing
+
         draw.rounded_rectangle(
-            (box_left, y, box_right, y + 78),
+            (box_left, current_y, box_right, current_y + box_height),
             radius=20,
             fill=(255, 255, 255, 20),
         )
 
-        lines = wrap_cjk_text(draw, fact, small_font, box_right - box_left - 40)
-        line_y = y + 18
-        for line in lines[:2]:
+        line_y = current_y + inner_top
+        for line in lines:
             draw.text(
                 (box_left + 20, line_y),
                 line,
                 font=small_font,
                 fill=(232, 238, 245, 255),
             )
-            line_y += 30
+            line_y += line_spacing
+
+        current_y += box_height + item_gap
 
 
 def build_scene_specs(script):
@@ -414,33 +396,6 @@ def draw_headline_scene(draw, scene, fonts):
     draw_keyword_stack(draw, scene.keywords, body_font, meta_font)
 
 
-# def draw_impact_scene(draw, scene, fonts):
-#     title_font, _, meta_font, small_font = fonts
-#     draw_card_shell(draw)
-#     draw_source_visual_chips(draw, scene.source, scene.visual, meta_font)
-
-#     impact_size = 64
-#     if len(scene.body) > 34:
-#         impact_size = 58
-#     if len(scene.body) > 52:
-#         impact_size = 52
-#     if len(scene.body) > 68:
-#         impact_size = 46
-#     impact_font = title_font.font_variant(size=impact_size)
-#     body_lines = wrap_cjk_text(draw, scene.body, impact_font, 1440)
-#     while len(body_lines) > 3 and impact_size > 36:
-#         impact_size -= 4
-#         impact_font = title_font.font_variant(size=impact_size)
-#         body_lines = wrap_cjk_text(draw, scene.body, impact_font, 1440)
-
-#     y = 300
-#     for line in body_lines[:3]:
-#         draw.text((LEFT_TEXT_X, y), line, font=impact_font, fill=(255, 255, 255, 255), stroke_fill=(0, 0, 0, 180), stroke_width=2)
-#         y += max(62, impact_size + 10)
-#     facts_start_y = y + 20
-
-
-#     draw_fact_stack_vertical(draw, scene.facts, small_font, facts_start_y)
 def draw_impact_scene(draw, scene, fonts):
     title_font, body_font, meta_font, small_font = fonts
     draw_card_shell(draw)
