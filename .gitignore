@@ -1,1 +1,49 @@
+# macOS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+.python-version
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Tool/test caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local env/config
+.env
+.env.*
+*.local
+
+# Runtime artifacts
+*.log
+tmp/
+temp/
+
+# Project outputs
 output/
+scripts/__pycache__/
+
+# Daily drafts/backups (keep input/news_script.txt)
+input/news_script_*.txt
+input/*副本*.txt
