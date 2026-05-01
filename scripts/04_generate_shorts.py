@@ -11,7 +11,6 @@ import edge_tts
 from PIL import Image, ImageDraw, ImageFont
 
 from news_pipeline import (
-    NewsItem,
     NewsScript,
     NewsSection,
     find_font,
@@ -21,8 +20,12 @@ from news_pipeline import (
 )
 
 BACKGROUND = Path("input/background.jpg")
-BGM = Path("input/bgm.mp3")
 OUTPUT_ROOT = Path(os.environ.get("SHORTS_OUTPUT_DIR", "output/shorts"))
+AUTHORIZED_AUDIO_DIR = Path(
+    os.environ.get("SHORTS_AUTHORIZED_AUDIO_DIR", "input/authorized_audio/shorts")
+)
+AUDIO_EXTENSIONS = {".mp3", ".m4a", ".wav", ".aac", ".flac", ".ogg"}
+LICENSE_SUFFIXES = (".license.txt", ".rights.txt")
 
 WIDTH = 1080
 HEIGHT = 1920
@@ -30,6 +33,7 @@ FPS = 6
 
 INTRO_SECONDS = 0.8
 OUTRO_SECONDS = 0.8
+MAX_SHORT_SECONDS = float(os.environ.get("SHORTS_MAX_SECONDS", "59.0"))
 
 VOICE = os.environ.get("EDGE_TTS_VOICE", "zh-CN-YunjianNeural")
 RATE = os.environ.get("EDGE_TTS_RATE", "-5%")
@@ -80,6 +84,24 @@ def resolve_date_tag(script_date: str) -> str:
     if re.fullmatch(r"\d{4}-\d{2}-\d{2}", script_date or ""):
         return script_date
     return date.today().strftime("%Y-%m-%d")
+
+
+def is_authorized_audio_track(audio_path: Path) -> bool:
+    return any(audio_path.with_name(audio_path.name + suffix).exists() for suffix in LICENSE_SUFFIXES)
+
+
+def discover_authorized_audio_tracks() -> list[Path]:
+    if not AUTHORIZED_AUDIO_DIR.exists():
+        return []
+    tracks = []
+    for file_path in sorted(AUTHORIZED_AUDIO_DIR.iterdir()):
+        if not file_path.is_file():
+            continue
+        if file_path.suffix.lower() not in AUDIO_EXTENSIONS:
+            continue
+        if is_authorized_audio_track(file_path):
+            tracks.append(file_path)
+    return tracks
 
 
 def wrap_cjk_text(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
@@ -189,8 +211,68 @@ def section_narration_text(section: NewsSection) -> str:
     return "\n\n".join(part for part in parts if part.strip())
 
 
+def first_sentence(text: str) -> str:
+    value = (text or "").strip()
+    if not value:
+        return ""
+    parts = re.split(r"(?<=[。！？!?])", value)
+    for part in parts:
+        cleaned = part.strip()
+        if cleaned:
+            return cleaned
+    return value
+
+
+def truncate_text(text: str, max_chars: int) -> str:
+    value = (text or "").strip()
+    if len(value) <= max_chars:
+        return value
+    return value[: max(1, max_chars - 1)] + "…"
+
+
+def compact_item_line(item, max_chars: int) -> str:
+    line = first_sentence(item.takeaway) or first_sentence(item.script)
+    line = truncate_text(line, max_chars)
+    return f"{item.headline}。{line}"
+
+
+def build_narration_variants(section: NewsSection) -> list[str]:
+    variants = []
+
+    # v1: full narration
+    variants.append(section_narration_text(section))
+
+    # v2: compact, keep all items
+    v2_parts = [f"下面是{section.name}速览。"]
+    for item in section.items:
+        v2_parts.append(compact_item_line(item, 52))
+    v2_parts.append(f"以上是{section.name}。")
+    variants.append("\n\n".join(part for part in v2_parts if part.strip()))
+
+    # v3: tighter, keep first 3 items
+    v3_parts = [f"{section.name}重点如下。"]
+    for item in section.items[:3]:
+        v3_parts.append(compact_item_line(item, 38))
+    v3_parts.append(f"{section.name}播报结束。")
+    variants.append("\n\n".join(part for part in v3_parts if part.strip()))
+
+    # Deduplicate while keeping order.
+    unique = []
+    seen = set()
+    for text in variants:
+        key = text.strip()
+        if key and key not in seen:
+            seen.add(key)
+            unique.append(key)
+    return unique
+
+
 def build_section_subtitles(section: NewsSection) -> list[str]:
     return split_sentences(section_narration_text(section))
+
+
+def build_subtitles_from_text(text: str) -> list[str]:
+    return split_sentences(text)
 
 
 def build_scene_specs(section: NewsSection) -> list[ShortScene]:
@@ -237,7 +319,7 @@ def build_scene_specs(section: NewsSection) -> list[ShortScene]:
 
 
 def render_background(base_image: Image.Image, palette):
-    frame = base_image.resize((WIDTH, HEIGHT))
+    frame = prepare_cover_background(base_image, WIDTH, HEIGHT)
     overlay = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     overlay_draw = ImageDraw.Draw(overlay)
     deep_color, accent_color = palette
@@ -250,6 +332,29 @@ def render_background(base_image: Image.Image, palette):
     frame = frame.convert("RGBA")
     frame.alpha_composite(overlay)
     return frame.convert("RGB")
+
+
+def prepare_cover_background(base_image: Image.Image, target_width: int, target_height: int) -> Image.Image:
+    source = base_image.convert("RGB")
+    src_w, src_h = source.size
+    src_ratio = src_w / src_h
+    target_ratio = target_width / target_height
+
+    # Keep aspect ratio and crop to fill the vertical canvas (no squeeze/stretch).
+    if src_ratio > target_ratio:
+        scale = target_height / src_h
+    else:
+        scale = target_width / src_w
+
+    resized_w = max(1, int(src_w * scale))
+    resized_h = max(1, int(src_h * scale))
+    resized = source.resize((resized_w, resized_h), Image.Resampling.LANCZOS)
+
+    left = max(0, (resized_w - target_width) // 2)
+    top = max(0, (resized_h - target_height) // 2)
+    right = left + target_width
+    bottom = top + target_height
+    return resized.crop((left, top, right, bottom))
 
 
 def draw_intro(draw: ImageDraw.ImageDraw, script: NewsScript, section: NewsSection, fonts):
@@ -410,6 +515,50 @@ def convert_mp3_to_wav(source_mp3: Path, target_wav: Path, ffmpeg_bin: str):
     )
 
 
+def build_atempo_filter(speed_factor: float) -> str:
+    factor = max(1.0, speed_factor)
+    factors = []
+    while factor > 2.0:
+        factors.append(2.0)
+        factor /= 2.0
+    factors.append(factor)
+    return ",".join(f"atempo={part:.5f}" for part in factors)
+
+
+def speedup_audio_to_target_duration(
+    input_wav: Path,
+    output_wav: Path,
+    target_seconds: float,
+    ffmpeg_bin: str,
+    ffprobe_bin: str,
+):
+    source_seconds = get_audio_duration_seconds(input_wav, ffprobe_bin)
+    if source_seconds <= target_seconds:
+        input_wav.replace(output_wav)
+        return
+
+    speed_factor = source_seconds / target_seconds
+    atempo_filter = build_atempo_filter(speed_factor)
+    subprocess.run(
+        [
+            ffmpeg_bin,
+            "-y",
+            "-i",
+            str(input_wav),
+            "-filter:a",
+            atempo_filter,
+            "-ar",
+            "44100",
+            "-ac",
+            "2",
+            str(output_wav),
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+
 def pad_audio(input_wav: Path, output_wav: Path, intro_seconds: float, outro_seconds: float):
     with wave.open(str(input_wav), "rb") as src:
         params = src.getparams()
@@ -436,6 +585,7 @@ def render_section_frames(
     frames_dir: Path,
     frame_list: Path,
     ffprobe_bin: str,
+    subtitle_lines: list[str] | None = None,
 ):
     frames_dir.mkdir(parents=True, exist_ok=True)
     for old in frames_dir.glob("frame_*.jpg"):
@@ -461,11 +611,8 @@ def render_section_frames(
         [scene.weight for scene in scenes],
     )
 
-    subtitle_timeline = build_weighted_timeline(
-        build_section_subtitles(section),
-        INTRO_SECONDS,
-        narration_duration,
-    )
+    subtitle_source = subtitle_lines if subtitle_lines is not None else build_section_subtitles(section)
+    subtitle_timeline = build_weighted_timeline(subtitle_source, INTRO_SECONDS, narration_duration)
 
     background = Image.open(BACKGROUND).convert("RGB")
     total_frames = int(total_duration * FPS) + 1
@@ -519,8 +666,8 @@ def render_section_frames(
         handle.write(f"file '{frame_paths[-1].resolve()}'\n")
 
 
-def merge_video(frame_list: Path, audio: Path, target_video: Path, ffmpeg_bin: str):
-    if BGM.exists():
+def merge_video(frame_list: Path, audio: Path, target_video: Path, ffmpeg_bin: str, bgm_path: Path | None):
+    if bgm_path and bgm_path.exists():
         command = [
             ffmpeg_bin,
             "-y",
@@ -535,7 +682,7 @@ def merge_video(frame_list: Path, audio: Path, target_video: Path, ffmpeg_bin: s
             "-stream_loop",
             "-1",
             "-i",
-            str(BGM),
+            str(bgm_path),
             "-filter_complex",
             "[1:a]volume=1.0[a0];[2:a]volume=0.06[a1];[a0][a1]amix=inputs=2:duration=first:dropout_transition=0[aout]",
             "-map",
@@ -592,7 +739,14 @@ def merge_video(frame_list: Path, audio: Path, target_video: Path, ffmpeg_bin: s
     subprocess.run(command, check=True, capture_output=True, text=True)
 
 
-async def generate_short_for_section(script: NewsScript, section: NewsSection, index: int, ffmpeg_bin: str, ffprobe_bin: str):
+async def generate_short_for_section(
+    script: NewsScript,
+    section: NewsSection,
+    index: int,
+    ffmpeg_bin: str,
+    ffprobe_bin: str,
+    authorized_tracks: list[Path],
+):
     date_tag = resolve_date_tag(script.date)
     slug = slugify(section.name)
     section_dir = OUTPUT_ROOT / f"{index:02d}_{slug}"
@@ -600,26 +754,64 @@ async def generate_short_for_section(script: NewsScript, section: NewsSection, i
 
     narration_mp3 = section_dir / "narration.mp3"
     narration_wav = section_dir / "narration.wav"
+    narration_sped_wav = section_dir / "narration_sped.wav"
     audio_wav = section_dir / "audio.wav"
     frames_dir = section_dir / "frames"
     frame_list = section_dir / "frames.txt"
     video_path = section_dir / f"short_{date_tag}_{index:02d}_{slug}.mp4"
 
-    text = section_narration_text(section)
-    await synthesize_with_retries(text, narration_mp3)
-    convert_mp3_to_wav(narration_mp3, narration_wav, ffmpeg_bin)
-    pad_audio(narration_wav, audio_wav, INTRO_SECONDS, OUTRO_SECONDS)
+    narration_variants = build_narration_variants(section)
+    allowed_narration_seconds = max(
+        8.0,
+        MAX_SHORT_SECONDS - INTRO_SECONDS - OUTRO_SECONDS - 0.2,
+    )
+
+    selected_variant = narration_variants[-1]
+    selected_duration = 0.0
+    for text in narration_variants:
+        await synthesize_with_retries(text, narration_mp3)
+        convert_mp3_to_wav(narration_mp3, narration_wav, ffmpeg_bin)
+        duration = get_audio_duration_seconds(narration_wav, ffprobe_bin)
+        selected_variant = text
+        selected_duration = duration
+        if duration <= allowed_narration_seconds:
+            break
+
+    if selected_duration > allowed_narration_seconds:
+        speedup_audio_to_target_duration(
+            narration_wav,
+            narration_sped_wav,
+            allowed_narration_seconds,
+            ffmpeg_bin,
+            ffprobe_bin,
+        )
+        active_narration_wav = narration_sped_wav
+    else:
+        active_narration_wav = narration_wav
+
+    pad_audio(active_narration_wav, audio_wav, INTRO_SECONDS, OUTRO_SECONDS)
 
     render_section_frames(
         script=script,
         section=section,
-        narration_audio=narration_wav,
+        narration_audio=active_narration_wav,
         padded_audio=audio_wav,
         frames_dir=frames_dir,
         frame_list=frame_list,
         ffprobe_bin=ffprobe_bin,
+        subtitle_lines=build_subtitles_from_text(selected_variant),
     )
-    merge_video(frame_list, audio_wav, video_path, ffmpeg_bin)
+    bgm_path = None
+    if authorized_tracks:
+        bgm_path = authorized_tracks[(index - 1) % len(authorized_tracks)]
+        print(f"Using authorized BGM: {bgm_path}")
+
+    merge_video(frame_list, audio_wav, video_path, ffmpeg_bin, bgm_path)
+    final_duration = get_audio_duration_seconds(audio_wav, ffprobe_bin)
+    print(
+        f"Short duration: {final_duration:.2f}s (target <= {MAX_SHORT_SECONDS:.1f}s), "
+        f"section={section.name}, variant_len={len(selected_variant)}"
+    )
 
     return video_path
 
@@ -630,12 +822,27 @@ async def main():
     ffprobe_bin = require_executable("ffprobe")
 
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
+    authorized_tracks = discover_authorized_audio_tracks()
+    if authorized_tracks:
+        print(f"Authorized shorts BGM tracks: {len(authorized_tracks)}")
+    else:
+        print(
+            "No authorized shorts BGM found; narration-only output. "
+            f"Expected tracks in {AUTHORIZED_AUDIO_DIR} with sidecar license files."
+        )
 
     generated = []
     for idx, section in enumerate(script.sections, start=1):
         if not section.items:
             continue
-        video_path = await generate_short_for_section(script, section, idx, ffmpeg_bin, ffprobe_bin)
+        video_path = await generate_short_for_section(
+            script,
+            section,
+            idx,
+            ffmpeg_bin,
+            ffprobe_bin,
+            authorized_tracks,
+        )
         generated.append(video_path)
         print(f"Short generated: {video_path}")
 

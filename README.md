@@ -83,6 +83,20 @@ python3 -m venv .venv
 ENABLE_SHORTS_OUTPUT=0 ./scripts/run_all.sh
 ```
 
+短视频授权音轨（可选）：
+
+1. 把可商用授权音乐放到 `input/authorized_audio/shorts/`。
+2. 对每个音频创建同名授权标记文件，文件名为：
+`<音频文件名>.license.txt` 或 `<音频文件名>.rights.txt`
+3. 短视频只会自动使用这批“带授权标记”的音轨；找不到时会自动输出纯人声短视频。
+4. 长视频逻辑不变，仍按原有方式处理 `input/bgm.mp3`。
+
+短视频自动压缩到 1 分钟内：
+
+1. 默认目标上限为 59 秒（可通过 `SHORTS_MAX_SECONDS` 调整）。
+2. 脚本会优先尝试更精简的口播版本；若仍超时，会自动轻度加速口播音频。
+3. 仅影响短视频流程，长视频流程不受影响。
+
 默认使用 `edge-tts`，并带有重试、缓存和音频有效性校验。
 如果当前运行环境不允许联网，`edge-tts` 会明确报错，而不是继续生成坏音频。
 实验性的本地 Apple 导出仍然保留，但不再是默认主路径。只有显式设置 `ENABLE_EXPERIMENTAL_LOCAL_TTS=1` 时才会尝试。
@@ -108,3 +122,4 @@ ENABLE_SHORTS_OUTPUT=0 ./scripts/run_all.sh
 - 第二张只显示 `source`、`visual`、`takeaway`、`facts`。
 - 增加运行前检查，提前发现依赖、字体、输入文件和日期问题。
 - 新增竖屏短视频输出：按 `sections` 逐条生成，输出目录为 `output/shorts/`，文件名包含日期（如 `short_2026-05-01_01_国内新闻.mp4`）。
+- 短视频背景音乐改为“仅授权音轨池自动选用”；未提供授权音轨时自动降级为纯人声，避免误用版权音乐。
