@@ -5,7 +5,8 @@
 1. 手动整理当天新闻。
 2. 按结构化 JSON 模板写入 `input/news_script.txt`。
 3. 运行 `./scripts/run_all.sh`。
-4. 系统自动完成预检查、配音、补静音、渲染场景、合成视频。
+4. 系统自动完成预检查、配音、补静音、渲染场景、合成横屏主视频。
+5. 系统按 `sections` 自动生成竖屏短视频（每个 section 一条）。
 
 ## 输入格式
 
@@ -76,6 +77,12 @@ python3 -m venv .venv
 ./scripts/run_all.sh
 ```
 
+只跑横屏主视频（跳过短视频）：
+
+```bash
+ENABLE_SHORTS_OUTPUT=0 ./scripts/run_all.sh
+```
+
 默认使用 `edge-tts`，并带有重试、缓存和音频有效性校验。
 如果当前运行环境不允许联网，`edge-tts` 会明确报错，而不是继续生成坏音频。
 实验性的本地 Apple 导出仍然保留，但不再是默认主路径。只有显式设置 `ENABLE_EXPERIMENTAL_LOCAL_TTS=1` 时才会尝试。
@@ -100,3 +107,4 @@ python3 -m venv .venv
 - 每条新闻会自动生成两张统一格式的卡片，第一张只显示 `source`、`visual`、`headline`、`keywords`。
 - 第二张只显示 `source`、`visual`、`takeaway`、`facts`。
 - 增加运行前检查，提前发现依赖、字体、输入文件和日期问题。
+- 新增竖屏短视频输出：按 `sections` 逐条生成，输出目录为 `output/shorts/`，文件名包含日期（如 `short_2026-05-01_01_国内新闻.mp4`）。

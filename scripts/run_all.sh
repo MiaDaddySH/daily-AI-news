@@ -24,4 +24,11 @@ echo "Step 2: Add intro and outro silence"
 echo "Step 3: Render frames and merge video"
 ./scripts/03_merge.sh
 
+if [ "${ENABLE_SHORTS_OUTPUT:-1}" = "1" ]; then
+  echo "Step 4: Generate short videos (vertical)"
+  "$PYTHON_BIN" scripts/04_generate_shorts.py
+else
+  echo "Step 4: Skip short videos (ENABLE_SHORTS_OUTPUT=${ENABLE_SHORTS_OUTPUT})"
+fi
+
 echo "Done"
