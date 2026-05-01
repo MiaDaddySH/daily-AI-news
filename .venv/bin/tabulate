@@ -1,4 +1,4 @@
-#!/Volumes/Development/Projects/daily-ai-news/.venv/bin/python3
+#!/Volumes/Development/Projects/daily-ai-news/.venv/bin/python
 import sys
 from tabulate import _main
 if __name__ == '__main__':
