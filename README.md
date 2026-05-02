@@ -83,6 +83,87 @@ python3 -m venv .venv
 ENABLE_SHORTS_OUTPUT=0 ./scripts/run_all.sh
 ```
 
+英语/德语分开自动出短视频（每个稿件一条，默认都压到 1 分钟内）：
+
+1. 把稿件放到 `input/language_scripts/`（支持 `.txt`、`.md`、`.json`）。
+`.txt/.md` 会自动转成结构化稿件，不需要你手工改 JSON。
+2. 建议文件名包含语言标记，方便自动选语音：
+`english_*.txt` / `en_*.txt` / `英语_*.txt`，`german_*.txt` / `de_*.txt` / `德语_*.txt`。
+3. 运行：
+
+```bash
+./scripts/run_language_shorts.sh
+```
+
+输出目录默认为 `output/language_shorts/`，每个稿件会生成一个独立子目录。
+如需自定义可设置环境变量：
+
+- `LANG_SCRIPT_DIR`：语言稿件目录（默认 `input/language_scripts`）
+- `LANG_SHORTS_OUTPUT_DIR`：输出目录（默认 `output/language_shorts`）
+- `LANG_SHORTS_VOICE_EN`：英语语音（默认 `en-US-ChristopherNeural`）
+- `LANG_SHORTS_VOICE_DE`：德语语音（默认 `de-DE-KillianNeural`）
+- `SHORTS_MAX_SECONDS`：短视频时长上限秒数（默认 `59`）
+
+英语/德语课程批量裁剪出片（推荐，用于介词等系列知识）：
+
+1. 准备两个独立 JSON 文件：
+- `input/language_series/english_lessons.json`
+- `input/language_series/german_lessons.json`
+2. 每个 JSON 的 `lessons` 里，一条 lesson 就会生成一条视频。
+3. 运行：
+
+```bash
+./scripts/run_language_series.sh
+```
+
+这个模式默认行为：
+
+- 不限制 1 分钟时长（不自动压缩口播）
+- 口播慢速（默认 `-18%`）
+- 同步优先：减少自动过场，尽量让口播和页面文本对齐
+- 面向中文用户：页面文本可放双语（如中英/中德）
+
+JSON 结构示例：
+
+```json
+{
+  "language": "en",
+  "meta": {
+    "title": "English Prepositions Core Pack",
+    "source": "ChatGPT",
+    "visual": "science"
+  },
+  "lessons": [
+    {
+      "id": "in_on_at_time",
+      "headline": "in, on, at for time",
+      "narration": "Target-language narration for TTS...",
+      "display": {
+        "body": "双语主文案（用于卡片正文）",
+        "facts": ["双语要点1", "双语要点2", "双语要点3"],
+        "keywords": ["tag1", "tag2", "tag3"]
+      }
+    }
+  ]
+}
+```
+
+批量课程模式可用环境变量：
+
+- `LANG_SERIES_DIR`：课程 JSON 目录（默认 `input/language_series`）
+- `LANG_SERIES_OUTPUT_DIR`：输出目录（默认 `output/language_series`）
+- `LANG_SERIES_EN_FILE`：英语课程 JSON 路径
+- `LANG_SERIES_DE_FILE`：德语课程 JSON 路径
+- `LANG_SERIES_VOICE_EN`：英语配音 voice
+- `LANG_SERIES_VOICE_DE`：德语配音 voice
+- `LANG_SERIES_RATE_EN`：英语语速（默认 `-18%`）
+- `LANG_SERIES_RATE_DE`：德语语速（默认 `-18%`）
+- `LANG_SERIES_DRY_RUN`：设为 `1` 时只切分和校验，不实际渲染
+
+可直接给 ChatGPT 的提示词模板：
+
+- `input/language_series/chatgpt_prompt_template.txt`
+
 短视频授权音轨（可选）：
 
 1. 把可商用授权音乐放到 `input/authorized_audio/shorts/`。

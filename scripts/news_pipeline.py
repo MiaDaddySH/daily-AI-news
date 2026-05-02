@@ -5,7 +5,7 @@ import shutil
 from dataclasses import dataclass
 from pathlib import Path
 
-SCRIPT_PATH = Path("input/news_script.txt")
+SCRIPT_PATH = Path(os.environ.get("NEWS_SCRIPT_PATH", "input/news_script.txt"))
 FONT_CANDIDATES = [
     "/System/Library/Fonts/PingFang.ttc",
     "/System/Library/Fonts/STHeiti Light.ttc",
@@ -68,8 +68,8 @@ def normalize_list(values) -> list[str]:
 
 def split_sentences(text: str, max_len: int = 24) -> list[str]:
     text = text.strip()
-    text = re.sub(r"\s+", "", text)
-    parts = re.split(r"(?<=[。！？!?])", text)
+    text = re.sub(r"\s+", " ", text)
+    parts = re.split(r"(?<=[。！？!?\.])\s*", text)
     parts = [p.strip() for p in parts if p.strip()]
 
     lines = []
@@ -77,8 +77,23 @@ def split_sentences(text: str, max_len: int = 24) -> list[str]:
         if len(part) <= max_len:
             lines.append(part)
             continue
-        chunks = [part[i : i + max_len] for i in range(0, len(part), max_len)]
-        lines.extend(chunks)
+        if " " not in part:
+            chunks = [part[i : i + max_len] for i in range(0, len(part), max_len)]
+            lines.extend(chunks)
+            continue
+
+        words = part.split(" ")
+        current = ""
+        for word in words:
+            trial = word if not current else f"{current} {word}"
+            if len(trial) <= max_len:
+                current = trial
+            else:
+                if current:
+                    lines.append(current)
+                current = word
+        if current:
+            lines.append(current)
     return lines
 
 

@@ -1,0 +1,534 @@
+[
+{
+"language": "de",
+"meta": {
+"title": "Prepositions Master Series",
+"source": "ChatGPT",
+"visual": "science"
+},
+"lessons": [
+{
+"id": "in_time_part1",
+"headline": "in für Zeit: Monate, Jahre und Zukunft",
+"narration": "Heute lernen wir in für Zeit. Man benutzt in bei Monaten, Jahreszeiten, Jahren und bei Zukunftszeiten. Sagen Sie: im Mai, im Sommer, im Jahr 2026. Beispiel: Ich bin im Mai in Berlin. Beispiel: Wir fahren in zwei Wochen nach Hamburg. Bei der Zukunft bedeutet in oft: nach dieser Zeit. Ein häufiger Fehler ist: Ich komme nach zwei Stunden, wenn man ab jetzt meint. Besser: Ich komme in zwei Stunden. Ein anderer Fehler: am 2025. Richtig: im Jahr 2025 oder 2025. Für Tage benutzt man am: am Montag. Für Uhrzeiten benutzt man um: um acht Uhr. Merken Sie: in für größere Zeiträume und Zukunftsabstände.",
+"display": {
+"body": "in = größere Zeiträume und Zukunft: im Mai, in zwei Wochen.\nin 表示较大时间段和从现在起多久之后。",
+"facts": [
+"Beispiel: Ich bin im Sommer in Deutschland.｜例句：我夏天在德国。",
+"Beispiel: Wir sehen uns in zwei Wochen.｜例句：我们两周后见。",
+"Fehler: am 2025 -> Richtig: im Jahr 2025.｜错误：am 2025 -> 正确：im Jahr 2025。"
+],
+"keywords": [
+"prepositions",
+"in",
+"time"
+]
+}
+},
+{
+"id": "in_place_part2",
+"headline": "in für Orte und Räume",
+"narration": "In benutzt man für Räume, Städte, Länder und Bereiche. Es bedeutet oft: drinnen oder innerhalb eines Gebiets. Sagen Sie: in der Küche, im Auto, in Berlin, in Deutschland. Beispiel: Die Schlüssel sind in meiner Tasche. Beispiel: Ich wohne in München. Bei Ländern ohne Artikel ist es einfach: in Deutschland, in China. Bei Ländern mit Artikel benutzt man den richtigen Fall: in der Schweiz, in die Schweiz. Ein häufiger Fehler ist: Ich bin auf Deutschland. Richtig: Ich bin in Deutschland. Noch ein Fehler: Ich gehe in Berlin, wenn Bewegung gemeint ist. Richtig: Ich gehe nach Berlin. Ort: in Berlin. Richtung: nach Berlin.",
+"display": {
+"body": "in = innerhalb eines Raums oder Gebiets: in der Küche, in Berlin.\nin 表示在房间、区域、城市或国家内部。",
+"facts": [
+"Beispiel: Die Schlüssel sind in der Tasche.｜例句：钥匙在包里。",
+"Beispiel: Ich wohne in Deutschland.｜例句：我住在德国。",
+"Fehler: auf Deutschland -> Richtig: in Deutschland.｜错误：auf Deutschland -> 正确：in Deutschland。"
+],
+"keywords": [
+"prepositions",
+"in",
+"place"
+]
+}
+},
+{
+"id": "in_case_part3",
+"headline": "in mit Dativ und Akkusativ",
+"narration": "In ist eine Wechselpräposition. Das heißt: Bei Ort benutzt man den Dativ. Bei Richtung benutzt man den Akkusativ. Frage: Wo? Antwort mit Dativ. Ich bin in der Küche. Das Buch liegt im Regal. Frage: Wohin? Antwort mit Akkusativ. Ich gehe in die Küche. Ich stelle das Buch ins Regal. Ein häufiger Fehler ist: Ich bin in die Küche. Richtig: Ich bin in der Küche. Oder: Ich gehe in die Küche. Noch ein Fehler: Ich lege das Handy in dem Rucksack. Wenn es Bewegung hinein ist, richtig: in den Rucksack. Diese Unterscheidung ist sehr wichtig für B1 und B2.",
+"display": {
+"body": "in + Dativ = Ort; in + Akkusativ = Richtung.\nin + 三格表示位置；in + 四格表示方向。",
+"facts": [
+"Wo? Ich bin in der Küche.｜在哪里？我在厨房里。",
+"Wohin? Ich gehe in die Küche.｜去哪里？我走进厨房。",
+"Fehler: Ich bin in die Küche -> Richtig: Ich bin in der Küche.｜错误：Ich bin in die Küche -> 正确：Ich bin in der Küche。"
+],
+"keywords": [
+"prepositions",
+"in",
+"case"
+]
+}
+},
+{
+"id": "an_time_part1",
+"headline": "an für Tage und Tageszeiten",
+"narration": "An benutzt man oft für Tage, Daten und bestimmte Tageszeiten. Mit Dativ heißt es meistens am, also an dem. Sagen Sie: am Montag, am ersten Mai, am Morgen, am Abend, am Wochenende. Beispiel: Wir treffen uns am Freitag. Beispiel: Am Abend lerne ich Deutsch. Ein häufiger Fehler ist: in Montag. Richtig: am Montag. Noch ein Fehler: um Wochenende. Richtig: am Wochenende. Aber bei Uhrzeiten benutzt man um: um acht Uhr. Bei Monaten benutzt man in: im Mai. Merken Sie diese kleine Leiter: im Jahr, im Mai, am Montag, um acht Uhr. So klingt Ihr Deutsch natürlicher.",
+"display": {
+"body": "an + Zeit = am Montag, am Abend, am Wochenende.\nan 表示星期、日期和某些时段，常缩写为 am。",
+"facts": [
+"Beispiel: Wir treffen uns am Freitag.｜例句：我们周五见面。",
+"Beispiel: Ich lerne am Abend.｜例句：我晚上学习。",
+"Fehler: in Montag -> Richtig: am Montag.｜错误：in Montag -> 正确：am Montag。"
+],
+"keywords": [
+"prepositions",
+"an",
+"time"
+]
+}
+},
+{
+"id": "an_place_part2",
+"headline": "an für Nähe und Kontakt",
+"narration": "An benutzt man für Nähe, Rand oder Kontakt mit einer senkrechten Fläche. Sagen Sie: an der Wand, am Fenster, am Bahnhof, am See. Beispiel: Das Bild hängt an der Wand. Beispiel: Ich warte am Eingang. An kann auch bedeuten: nahe bei einem Punkt. Deshalb sagt man oft am Bahnhof oder an der Haltestelle. Ein häufiger Fehler ist: Ich warte in der Bushaltestelle. Richtig: Ich warte an der Bushaltestelle. Noch ein Fehler: Das Bild ist auf der Wand. Richtig: Das Bild ist an der Wand. Auf ist für horizontale Flächen, an ist oft für vertikale Flächen oder Randpunkte.",
+"display": {
+"body": "an = Nähe, Rand oder Kontakt: an der Wand, am Eingang.\nan 表示靠近、在边上，或贴在垂直表面上。",
+"facts": [
+"Beispiel: Das Bild hängt an der Wand.｜例句：画挂在墙上。",
+"Beispiel: Ich warte am Eingang.｜例句：我在入口等。",
+"Fehler: auf der Wand -> Richtig: an der Wand.｜错误：auf der Wand -> 正确：an der Wand。"
+],
+"keywords": [
+"prepositions",
+"an",
+"place"
+]
+}
+},
+{
+"id": "auf_place_part1",
+"headline": "auf für Flächen und öffentliche Orte",
+"narration": "Auf benutzt man für horizontale Flächen und für einige feste Orte. Sagen Sie: auf dem Tisch, auf dem Boden, auf der Straße, auf dem Markt, auf der Post. Beispiel: Das Handy liegt auf dem Tisch. Beispiel: Ich kaufe Gemüse auf dem Markt. Auf ist auch eine Wechselpräposition. Ort mit Dativ: Das Glas steht auf dem Tisch. Richtung mit Akkusativ: Ich stelle das Glas auf den Tisch. Ein häufiger Fehler ist: Das Buch ist in dem Tisch. Richtig: Das Buch ist auf dem Tisch. Noch ein Fehler: Ich gehe auf der Markt. Bei Richtung: Ich gehe auf den Markt. Bei Ort: Ich bin auf dem Markt.",
+"display": {
+"body": "auf = Fläche oder bestimmter Ort: auf dem Tisch, auf dem Markt.\nauf 表示在表面上，也用于一些固定地点。",
+"facts": [
+"Beispiel: Das Handy liegt auf dem Tisch.｜例句：手机在桌上。",
+"Beispiel: Ich bin auf dem Markt.｜例句：我在市场。",
+"Fehler: in dem Tisch -> Richtig: auf dem Tisch.｜错误：in dem Tisch -> 正确：auf dem Tisch。"
+],
+"keywords": [
+"prepositions",
+"auf",
+"place"
+]
+}
+},
+{
+"id": "auf_logic_part2",
+"headline": "auf in festen Verbindungen",
+"narration": "Auf erscheint in vielen festen Verbindungen. Diese Phrasen sollte man als ganze Stücke lernen. Sagen Sie: warten auf, sich freuen auf, achten auf, stolz auf, Lust auf. Beispiel: Ich warte auf den Bus. Beispiel: Ich freue mich auf das Wochenende. Nach vielen dieser Phrasen steht der Akkusativ. Ein häufiger Fehler ist: Ich warte den Bus. Richtig: Ich warte auf den Bus. Noch ein Fehler: Ich freue mich über das Wochenende, wenn es noch in der Zukunft liegt. Besser: Ich freue mich auf das Wochenende. Über benutzt man oft für etwas, das schon passiert ist: Ich freue mich über dein Geschenk. Lernen Sie Verb und Präposition zusammen.",
+"display": {
+"body": "auf in Phrasen: warten auf, sich freuen auf, achten auf.\nauf 常出现在固定搭配中，要和动词一起记。",
+"facts": [
+"Beispiel: Ich warte auf den Bus.｜例句：我在等公交。",
+"Beispiel: Ich freue mich auf das Wochenende.｜例句：我期待周末。",
+"Fehler: warten den Bus -> Richtig: warten auf den Bus.｜错误：warten den Bus -> 正确：warten auf den Bus。"
+],
+"keywords": [
+"prepositions",
+"auf",
+"collocation"
+]
+}
+},
+{
+"id": "bei_place_part1",
+"headline": "bei für Nähe, Arbeit und Personen",
+"narration": "Bei bedeutet oft: in der Nähe von, am Ort von, oder bei einer Person oder Firma. Sagen Sie: bei mir, beim Arzt, bei Siemens, bei der Arbeit. Beispiel: Ich bin heute bei meiner Schwester. Beispiel: Er arbeitet bei einer Bank. Bei steht immer mit Dativ. Ein häufiger Fehler ist: Ich bin in Arzt. Richtig: Ich bin beim Arzt. Noch ein Fehler: Ich arbeite in BMW. Richtig: Ich arbeite bei BMW, wenn die Firma gemeint ist. Aber: Ich arbeite in einem Büro, wenn der Raum gemeint ist. Bei ist sehr wichtig für Alltagssituationen: beim Friseur, beim Kunden, bei Freunden.",
+"display": {
+"body": "bei = bei Personen, Firmen, Terminen: bei mir, beim Arzt, bei BMW.\nbei 表示在某人处、某公司、某活动/服务地点。",
+"facts": [
+"Beispiel: Ich bin bei meiner Schwester.｜例句：我在我姐姐那里。",
+"Beispiel: Er arbeitet bei einer Bank.｜例句：他在一家银行工作。",
+"Fehler: in Arzt -> Richtig: beim Arzt.｜错误：in Arzt -> 正确：beim Arzt。"
+],
+"keywords": [
+"prepositions",
+"bei",
+"place"
+]
+}
+},
+{
+"id": "mit_company_part1",
+"headline": "mit für Begleitung und Mittel",
+"narration": "Mit benutzt man für Begleitung, Zusammenarbeit und Mittel. Es steht immer mit Dativ. Sagen Sie: mit meiner Frau, mit dem Auto, mit einem Messer. Beispiel: Ich fahre mit dem Zug zur Arbeit. Beispiel: Ich spreche mit meiner Kollegin. Mit kann also bedeuten: zusammen mit einer Person oder mithilfe eines Mittels. Ein häufiger Fehler ist: Ich fahre bei Zug. Richtig: Ich fahre mit dem Zug. Noch ein Fehler: Ich diskutiere das Problem mit. Richtig: Ich diskutiere mit ihm über das Problem, oder ich diskutiere das Problem. Merken Sie: mit plus Dativ. Der Zug wird dem Zug, die Kollegin wird der Kollegin.",
+"display": {
+"body": "mit = zusammen oder mit einem Mittel: mit Anna, mit dem Zug.\nmit 表示一起，或使用某种工具/交通方式。",
+"facts": [
+"Beispiel: Ich fahre mit dem Zug.｜例句：我坐火车。",
+"Beispiel: Ich spreche mit meiner Kollegin.｜例句：我和同事说话。",
+"Fehler: bei Zug -> Richtig: mit dem Zug.｜错误：bei Zug -> 正确：mit dem Zug。"
+],
+"keywords": [
+"prepositions",
+"mit",
+"company"
+]
+}
+},
+{
+"id": "ohne_absence_part1",
+"headline": "ohne für Fehlen und Ausschluss",
+"narration": "Ohne bedeutet: etwas oder jemand ist nicht dabei. Es steht mit Akkusativ. Sagen Sie: ohne Zucker, ohne meinen Mann, ohne Hilfe. Beispiel: Ich trinke Kaffee ohne Milch. Beispiel: Sie hat die Aufgabe ohne Hilfe geschafft. Nach ohne kann auch ein Verb als zu-Infinitiv stehen: ohne zu fragen, ohne zu warten. Ein häufiger Fehler ist: ohne mit Zucker. Richtig: ohne Zucker. Noch ein Fehler: ohne fragen. Richtig: ohne zu fragen. Bei Nomen ist es ohne plus Akkusativ: ohne den Schlüssel, ohne eine Pause. Ohne ist das Gegenteil von mit. Mit Dativ, aber ohne Akkusativ. Das ist ein typischer Prüfungsfehler.",
+"display": {
+"body": "ohne = nicht dabei, kein: ohne Zucker, ohne Hilfe.\nohne 表示没有、不带、不包括，后接四格。",
+"facts": [
+"Beispiel: Kaffee ohne Milch, bitte.｜例句：请给我不加奶的咖啡。",
+"Beispiel: Sie arbeitet ohne Pause.｜例句：她不停地工作。",
+"Fehler: ohne fragen -> Richtig: ohne zu fragen.｜错误：ohne fragen -> 正确：ohne zu fragen。"
+],
+"keywords": [
+"prepositions",
+"ohne",
+"absence"
+]
+}
+},
+{
+"id": "fuer_purpose_part1",
+"headline": "für für Zweck und Person",
+"narration": "Für benutzt man für Zweck, Zielgruppe, Preis und Vorteil. Es steht mit Akkusativ. Sagen Sie: für dich, für Kinder, für Deutsch, für zehn Euro. Beispiel: Dieses Video ist für chinesische Muttersprachler. Beispiel: Ich kaufe ein Geschenk für meine Tochter. Für antwortet oft auf die Frage: Für wen oder wofür? Ein häufiger Fehler ist: Ich kaufe ein Geschenk zu dir. Richtig: Ich kaufe ein Geschenk für dich. Noch ein Fehler: Das ist gut zu Lernen. Richtig: Das ist gut fürs Lernen oder gut zum Lernen. Lernen Sie feste Ausdrücke: für immer, für mich, für Anfänger, für kurze Zeit.",
+"display": {
+"body": "für = Zweck, Zielgruppe, Vorteil: für dich, für Anfänger.\nfür 表示目的、对象、受益者，后接四格。",
+"facts": [
+"Beispiel: Das Geschenk ist für dich.｜例句：这个礼物是给你的。",
+"Beispiel: Der Kurs ist für Anfänger.｜例句：这门课适合初学者。",
+"Fehler: Geschenk zu dir -> Richtig: Geschenk für dich.｜错误：Geschenk zu dir -> 正确：Geschenk für dich。"
+],
+"keywords": [
+"prepositions",
+"fuer",
+"purpose"
+]
+}
+},
+{
+"id": "gegen_opposition_part1",
+"headline": "gegen für Richtung, Zeit und Gegensatz",
+"narration": "Gegen hat drei wichtige Bedeutungen. Erstens: Richtung mit Kontakt. Das Auto fährt gegen einen Baum. Zweitens: ungefährer Zeitpunkt. Wir kommen gegen acht Uhr. Drittens: Gegensatz oder Kampf. Viele Menschen sind gegen die Regel. Gegen steht mit Akkusativ. Beispiel: Ich bin gegen diesen Plan. Beispiel: Das Spiel ist Deutschland gegen Frankreich. Ein häufiger Fehler ist: Ich bin dagegen diesen Plan. Richtig: Ich bin gegen diesen Plan, oder ich bin dagegen. Noch ein Fehler: Wir treffen uns um acht, wenn es nur ungefähr ist. Besser: gegen acht. Um acht ist genauer. Gegen acht bedeutet ungefähr um acht.",
+"display": {
+"body": "gegen = against, around time, or contact: gegen den Plan, gegen acht.\ngegen 表示反对、约几点、或撞向某物，后接四格。",
+"facts": [
+"Beispiel: Ich bin gegen diesen Plan.｜例句：我反对这个计划。",
+"Beispiel: Wir kommen gegen acht Uhr.｜例句：我们大约八点来。",
+"Fehler: dagegen diesen Plan -> Richtig: gegen diesen Plan.｜错误：dagegen diesen Plan -> 正确：gegen diesen Plan。"
+],
+"keywords": [
+"prepositions",
+"gegen",
+"opposition"
+]
+}
+},
+{
+"id": "um_time_part1",
+"headline": "um für Uhrzeit und herum",
+"narration": "Um benutzt man zuerst für genaue Uhrzeiten. Sagen Sie: um acht Uhr, um halb neun, um 14 Uhr. Beispiel: Der Kurs beginnt um neun Uhr. Zweitens bedeutet um: herum um etwas. Beispiel: Wir sitzen um den Tisch. Drittens gibt es feste Verbindungen: Es geht um Geld. Ich bitte um Hilfe. Um steht mit Akkusativ. Ein häufiger Fehler ist: am acht Uhr. Richtig: um acht Uhr. Noch ein Fehler: Es geht über Geld, wenn das Thema gemeint ist. Richtig: Es geht um Geld. Über Geld sprechen ist auch möglich, aber Es geht um Geld ist die feste Struktur für das Thema oder Problem.",
+"display": {
+"body": "um = genaue Uhrzeit, herum, Thema: um acht, um den Tisch, es geht um.\num 表示具体时间、围绕，以及固定表达“关于”。",
+"facts": [
+"Beispiel: Der Zug kommt um acht Uhr.｜例句：火车八点到。",
+"Beispiel: Es geht um Geld.｜例句：这是关于钱的问题。",
+"Fehler: am acht Uhr -> Richtig: um acht Uhr.｜错误：am acht Uhr -> 正确：um acht Uhr。"
+],
+"keywords": [
+"prepositions",
+"um",
+"time"
+]
+}
+},
+{
+"id": "ueber_position_part1",
+"headline": "über für Position und Thema",
+"narration": "Über kann räumlich bedeuten: höher als etwas. Sagen Sie: Die Lampe hängt über dem Tisch. Es kann auch bedeuten: mehr als. Beispiel: Über hundert Menschen waren dort. Sehr wichtig ist über als Thema mit sprechen, reden, schreiben. Beispiel: Wir sprechen über Arbeit. Beispiel: Sie schreibt über Gesundheit. Über ist eine Wechselpräposition bei Raum: über dem Tisch für Ort, über den Tisch für Richtung. Ein häufiger Fehler ist: Ich spreche von das Problem. Richtig: Ich spreche über das Problem. Noch ein Fehler: mehr über zehn Euro. Richtig: über zehn Euro oder mehr als zehn Euro. Lernen Sie: sich freuen über, sprechen über, nachdenken über.",
+"display": {
+"body": "über = above, more than, or about: über dem Tisch, über 100, über Arbeit.\nüber 表示上方、超过，或谈论某话题。",
+"facts": [
+"Beispiel: Wir sprechen über das Projekt.｜例句：我们谈论这个项目。",
+"Beispiel: Die Lampe hängt über dem Tisch.｜例句：灯挂在桌子上方。",
+"Fehler: sprechen von das Problem -> Richtig: über das Problem sprechen.｜错误：sprechen von das Problem -> 正确：über das Problem sprechen。"
+],
+"keywords": [
+"prepositions",
+"ueber",
+"topic"
+]
+}
+},
+{
+"id": "unter_position_part1",
+"headline": "unter für Position, Gruppe und Grenze",
+"narration": "Unter bedeutet oft: niedriger als oder unterhalb von. Sagen Sie: unter dem Tisch, unter der Brücke, unter zehn Euro. Beispiel: Die Katze liegt unter dem Stuhl. Beispiel: Das kostet unter zwanzig Euro. Unter kann auch in Gruppen benutzt werden: unter Freunden, unter Studenten. Es kann auch einen Zustand zeigen: unter Druck, unter Stress. Ein häufiger Fehler ist: in Druck. Richtig: unter Druck. Noch ein Fehler: Das Kind ist unter der Schule, wenn man meint: jünger als schulpflichtig. Besser: Das Kind ist noch nicht in der Schule. Unter ist räumlich, zahlenmäßig und abstrakt sehr nützlich. Als Wechselpräposition braucht es Dativ für Ort und Akkusativ für Richtung.",
+"display": {
+"body": "unter = below, less than, among, under pressure.\nunter 表示在下方、少于、在群体中或处于压力下。",
+"facts": [
+"Beispiel: Die Tasche liegt unter dem Tisch.｜例句：包在桌子下面。",
+"Beispiel: Ich arbeite unter Druck.｜例句：我在压力下工作。",
+"Fehler: in Druck -> Richtig: unter Druck.｜错误：in Druck -> 正确：unter Druck。"
+],
+"keywords": [
+"prepositions",
+"unter",
+"position"
+]
+}
+},
+{
+"id": "vor_time_place_part1",
+"headline": "vor für Zeit, Position und Grund",
+"narration": "Vor hat mehrere wichtige Bedeutungen. Für Zeit bedeutet es: früher als jetzt oder früher als ein Ereignis. Beispiel: Vor drei Jahren wohnte ich in Shanghai. Beispiel: Vor dem Essen wasche ich die Hände. Für Ort bedeutet es: vorne bei etwas. Beispiel: Ich stehe vor dem Haus. Vor kann auch einen Grund mit Gefühl zeigen: vor Angst, vor Freude. Ein häufiger Fehler ist: Ich bin seit drei Jahren nach Berlin gekommen. Besser: Ich bin vor drei Jahren nach Berlin gekommen, wenn der Zeitpunkt gemeint ist. Noch ein Fehler: Ich warte vorne dem Haus. Richtig: vor dem Haus. Vor steht mit Dativ, wenn es Ort oder Zeitpunkt ohne Bewegung ist.",
+"display": {
+"body": "vor = before, in front of, because of emotion: vor drei Jahren, vor dem Haus.\nvor 表示以前、在前面，或因情绪而产生的原因。",
+"facts": [
+"Beispiel: Vor drei Jahren war ich in China.｜例句：三年前我在中国。",
+"Beispiel: Ich stehe vor dem Haus.｜例句：我站在房子前面。",
+"Fehler: vorne dem Haus -> Richtig: vor dem Haus.｜错误：vorne dem Haus -> 正确：vor dem Haus。"
+],
+"keywords": [
+"prepositions",
+"vor",
+"time_place"
+]
+}
+},
+{
+"id": "hinter_place_part1",
+"headline": "hinter für Position und Richtung",
+"narration": "Hinter bedeutet: auf der Rückseite von etwas oder jemandem. Es ist eine Wechselpräposition. Bei Ort benutzt man Dativ. Beispiel: Das Auto steht hinter dem Haus. Beispiel: Der Garten ist hinter der Schule. Bei Richtung benutzt man Akkusativ. Beispiel: Ich stelle das Fahrrad hinter das Haus. Ein häufiger Fehler ist: Das Auto steht hinter das Haus. Richtig: Das Auto steht hinter dem Haus. Noch ein Fehler: Ich gehe hinter dem Haus, wenn die Richtung gemeint ist. Richtig: Ich gehe hinter das Haus. Die Frage hilft: Wo? hinter dem Haus. Wohin? hinter das Haus. Hinter ist das Gegenteil von vor.",
+"display": {
+"body": "hinter + Dativ = Ort; hinter + Akkusativ = Richtung.\nhinter 表示在后面；三格位置，四格方向。",
+"facts": [
+"Beispiel: Das Auto steht hinter dem Haus.｜例句：车停在房子后面。",
+"Beispiel: Ich stelle das Rad hinter das Haus.｜例句：我把自行车放到房子后面。",
+"Fehler: steht hinter das Haus -> Richtig: steht hinter dem Haus.｜错误：steht hinter das Haus -> 正确：steht hinter dem Haus。"
+],
+"keywords": [
+"prepositions",
+"hinter",
+"place"
+]
+}
+},
+{
+"id": "neben_place_part1",
+"headline": "neben für direkte Nähe",
+"narration": "Neben bedeutet: direkt links oder rechts von etwas, also next to. Es ist eine Wechselpräposition. Bei Ort steht Dativ: Ich sitze neben meiner Kollegin. Die Lampe steht neben dem Bett. Bei Richtung steht Akkusativ: Ich setze mich neben meine Kollegin. Ich stelle die Lampe neben das Bett. Ein häufiger Fehler ist: Ich sitze neben meine Kollegin. Richtig: Ich sitze neben meiner Kollegin. Noch ein Fehler: Der Supermarkt ist bei der Bank, wenn direkte Nachbarschaft gemeint ist. Besser: Der Supermarkt ist neben der Bank. Bei ist allgemeiner. Neben ist genauer und bedeutet direkt daneben. Fragen Sie: Wo? Dativ. Wohin? Akkusativ.",
+"display": {
+"body": "neben = directly next to: neben der Bank, neben dem Bett.\nneben 表示紧挨着、在旁边；位置三格，方向四格。",
+"facts": [
+"Beispiel: Ich sitze neben meiner Kollegin.｜例句：我坐在同事旁边。",
+"Beispiel: Stell die Lampe neben das Bett.｜例句：把灯放到床边。",
+"Fehler: sitze neben meine Kollegin -> Richtig: neben meiner Kollegin.｜错误：sitze neben meine Kollegin -> 正确：neben meiner Kollegin。"
+],
+"keywords": [
+"prepositions",
+"neben",
+"place"
+]
+}
+},
+{
+"id": "zwischen_relation_part1",
+"headline": "zwischen für zwei Seiten oder klare Gruppen",
+"narration": "Zwischen bedeutet: in der Mitte von zwei Personen, Dingen oder klaren Gruppen. Es ist eine Wechselpräposition. Bei Ort: Das Café liegt zwischen dem Bahnhof und dem Hotel. Bei Richtung: Ich stelle den Stuhl zwischen den Tisch und das Fenster. Zwischen benutzt man auch für Zeiträume: zwischen Montag und Freitag, zwischen acht und neun Uhr. Ein häufiger Fehler ist: unter zwei Optionen wählen. Richtig: zwischen zwei Optionen wählen. Noch ein Fehler: zwischen du und ich. Richtig: zwischen dir und mir. In festen Formulierungen steht oft Dativ: zwischen mir und dir. Merken Sie: zwischen für klare Seiten, Optionen oder Zeitgrenzen.",
+"display": {
+"body": "zwischen = between clear sides: zwischen A und B.\nzwischen 表示两者或明确边界之间。",
+"facts": [
+"Beispiel: Das Café liegt zwischen dem Bahnhof und dem Hotel.｜例句：咖啡馆在车站和酒店之间。",
+"Beispiel: Wir treffen uns zwischen acht und neun.｜例句：我们八点到九点之间见。",
+"Fehler: zwischen du und ich -> Richtig: zwischen dir und mir.｜错误：zwischen du und ich -> 正确：zwischen dir und mir。"
+],
+"keywords": [
+"prepositions",
+"zwischen",
+"relation"
+]
+}
+},
+{
+"id": "aus_origin_part1",
+"headline": "aus für Herkunft und Bewegung nach draußen",
+"narration": "Aus benutzt man für Herkunft, Material und Bewegung von innen nach außen. Es steht immer mit Dativ. Sagen Sie: aus China, aus Berlin, aus Holz, aus dem Haus. Beispiel: Ich komme aus China. Beispiel: Sie geht aus dem Zimmer. Aus bedeutet oft: von innen heraus. Ein häufiger Fehler ist: Ich komme von China. Richtig: Ich komme aus China. Von benutzt man eher für Personen, Firmen oder Startpunkte: von meinem Freund, vom Bahnhof. Noch ein Fehler: Der Tisch ist von Holz. Richtig: Der Tisch ist aus Holz. Merken Sie: Herkunft aus einem Land oder einer Stadt meistens mit aus.",
+"display": {
+"body": "aus = origin, material, out of: aus China, aus Holz, aus dem Zimmer.\naus 表示来自、材料，或从内部出来，后接三格。",
+"facts": [
+"Beispiel: Ich komme aus China.｜例句：我来自中国。",
+"Beispiel: Der Tisch ist aus Holz.｜例句：桌子是木头做的。",
+"Fehler: von China -> Richtig: aus China.｜错误：von China -> 正确：aus China。"
+],
+"keywords": [
+"prepositions",
+"aus",
+"origin"
+]
+}
+},
+{
+"id": "von_origin_part1",
+"headline": "von für Quelle, Besitz und Startpunkt",
+"narration": "Von benutzt man für Quelle, Besitzer, Thema oder Startpunkt. Es steht mit Dativ. Sagen Sie: von meinem Freund, von der Arbeit, von Montag bis Freitag, das Auto von Anna. Beispiel: Die E-Mail ist von meiner Chefin. Beispiel: Ich komme gerade von der Arbeit. Von ist nicht immer dasselbe wie aus. Aus ist Herkunft aus einem Ort oder Material: aus China, aus Holz. Von ist Quelle oder Richtung weg von einem Punkt. Ein häufiger Fehler ist: Ich komme von China. Richtig: Ich komme aus China. Noch ein Fehler: Das ist das Buch aus Anna. Richtig: Das ist das Buch von Anna. In gesprochener Sprache ist von sehr häufig.",
+"display": {
+"body": "von = source, owner, starting point: von Anna, von der Arbeit.\nvon 表示来源、所属或起点，后接三格。",
+"facts": [
+"Beispiel: Die Nachricht ist von Tom.｜例句：消息来自Tom。",
+"Beispiel: Ich komme von der Arbeit.｜例句：我刚从工作地点来。",
+"Fehler: Buch aus Anna -> Richtig: Buch von Anna.｜错误：Buch aus Anna -> 正确：Buch von Anna。"
+],
+"keywords": [
+"prepositions",
+"von",
+"origin"
+]
+}
+},
+{
+"id": "zu_direction_part1",
+"headline": "zu für Richtung zu Personen und Orten",
+"narration": "Zu benutzt man für Richtung zu Personen, Terminen, Firmen und vielen Orten. Es steht mit Dativ. Sagen Sie: zu meiner Freundin, zum Arzt, zur Arbeit, zum Supermarkt. Beispiel: Ich gehe heute zum Arzt. Beispiel: Wir fahren zu unseren Freunden. Zu beschreibt oft den Zielpunkt, nicht unbedingt das Innere. Ein häufiger Fehler ist: Ich gehe nach Arzt. Richtig: Ich gehe zum Arzt. Noch ein Fehler: Ich gehe zu Hause, wenn die Bewegung nach Hause gemeint ist. Richtig: Ich gehe nach Hause. Zuhause ist besonders: nach Hause für Richtung, zu Hause für Ort. Merken Sie: zu Personen und Terminen, nach für Städte und Länder ohne Artikel.",
+"display": {
+"body": "zu = direction to people, appointments, many places: zum Arzt, zur Arbeit.\nzu 表示去某人处、某服务地点或某目的地，后接三格。",
+"facts": [
+"Beispiel: Ich gehe zum Arzt.｜例句：我去看医生。",
+"Beispiel: Wir fahren zu Freunden.｜例句：我们去朋友家。",
+"Fehler: nach Arzt -> Richtig: zum Arzt.｜错误：nach Arzt -> 正确：zum Arzt。"
+],
+"keywords": [
+"prepositions",
+"zu",
+"direction"
+]
+}
+},
+{
+"id": "nach_direction_part1",
+"headline": "nach für Städte, Länder und Hause",
+"narration": "Nach benutzt man für Richtung zu Städten, Ländern ohne Artikel und nach Hause. Sagen Sie: nach Berlin, nach Deutschland, nach China, nach Hause. Beispiel: Ich fahre morgen nach München. Beispiel: Wir fliegen im Sommer nach Spanien. Nach steht auch bei Richtungen wie nach links, nach rechts, nach oben. Ein häufiger Fehler ist: Ich gehe zu Berlin. Richtig: Ich gehe nach Berlin. Noch ein Fehler: Ich fahre nach die Schweiz. Weil die Schweiz einen Artikel hat, sagt man: in die Schweiz. Für Ort sagt man: Ich bin in Berlin. Für Richtung sagt man: Ich fahre nach Berlin. Diese Trennung ist sehr wichtig.",
+"display": {
+"body": "nach = direction to cities, countries without article, home: nach Berlin, nach Hause.\nnach 表示去城市、无冠词国家和回家。",
+"facts": [
+"Beispiel: Ich fahre nach Berlin.｜例句：我去柏林。",
+"Beispiel: Wir gehen nach Hause.｜例句：我们回家。",
+"Fehler: zu Berlin -> Richtig: nach Berlin.｜错误：zu Berlin -> 正确：nach Berlin。"
+],
+"keywords": [
+"prepositions",
+"nach",
+"direction"
+]
+}
+},
+{
+"id": "seit_time_part1",
+"headline": "seit für Beginn bis jetzt",
+"narration": "Seit benutzt man für etwas, das in der Vergangenheit begonnen hat und bis jetzt dauert. Es steht mit Dativ. Sagen Sie: seit Montag, seit drei Jahren, seit dem Sommer. Beispiel: Ich lerne seit zwei Jahren Deutsch. Das bedeutet: Ich lerne immer noch Deutsch. Beispiel: Sie wohnt seit 2020 in Berlin. Ein häufiger Fehler ist: Ich lerne Deutsch für zwei Jahre. Im Deutschen ist hier seit richtig, wenn es bis jetzt dauert. Noch ein Fehler: Ich bin seit 2020 nach Berlin gekommen. Richtig: Ich wohne seit 2020 in Berlin, oder ich bin 2020 nach Berlin gekommen. Seit braucht oft Präsens, weil die Situation noch aktuell ist.",
+"display": {
+"body": "seit = started in the past and continues now: seit zwei Jahren.\nseit 表示从过去开始一直持续到现在，后接三格。",
+"facts": [
+"Beispiel: Ich lerne seit zwei Jahren Deutsch.｜例句：我学德语两年了。",
+"Beispiel: Sie wohnt seit 2020 hier.｜例句：她从2020年起住在这里。",
+"Fehler: für zwei Jahre -> Richtig: seit zwei Jahren, wenn es bis jetzt dauert.｜错误：für zwei Jahre -> 正确：seit zwei Jahren。"
+],
+"keywords": [
+"prepositions",
+"seit",
+"time"
+]
+}
+},
+{
+"id": "bis_limit_part1",
+"headline": "bis für Endpunkt und Grenze",
+"narration": "Bis bedeutet: bis zu einem Endpunkt in Zeit oder Raum. Sagen Sie: bis Montag, bis acht Uhr, bis Berlin, bis zum Bahnhof. Beispiel: Bitte antworten Sie bis Freitag. Beispiel: Der Bus fährt nur bis zum Bahnhof. Bis kann allein stehen, oft bei Zeit ohne Artikel: bis morgen, bis nächste Woche. Mit Artikel oder Ort benutzt man oft bis zu plus Dativ: bis zur Tür, bis zum Ende. Ein häufiger Fehler ist: Ich warte dich bis. Richtig: Ich warte bis acht Uhr, oder ich warte auf dich bis acht Uhr. Noch ein Fehler: von Montag zu Freitag. Richtig: von Montag bis Freitag. Bis markiert die Grenze.",
+"display": {
+"body": "bis = end point or limit: bis Freitag, bis zum Bahnhof.\nbis 表示到某个时间或空间终点。",
+"facts": [
+"Beispiel: Bitte antworten Sie bis Freitag.｜例句：请在周五前回复。",
+"Beispiel: Der Zug fährt bis Berlin.｜例句：火车开到柏林。",
+"Fehler: von Montag zu Freitag -> Richtig: von Montag bis Freitag.｜错误：von Montag zu Freitag -> 正确：von Montag bis Freitag。"
+],
+"keywords": [
+"prepositions",
+"bis",
+"limit"
+]
+}
+},
+{
+"id": "durch_movement_part1",
+"headline": "durch für Bewegung und Mittel",
+"narration": "Durch bedeutet: von einer Seite zur anderen, oft innen hindurch. Es steht mit Akkusativ. Sagen Sie: durch den Park, durch die Tür, durch den Tunnel. Beispiel: Wir gehen durch den Wald. Beispiel: Das Licht kommt durch das Fenster. Durch kann auch ein Mittel oder eine Ursache zeigen: durch Training, durch einen Fehler. Ein häufiger Fehler ist: Wir gehen über den Tunnel. Richtig: Wir gehen durch den Tunnel. Noch ein Fehler: Ich habe Deutsch mit viel Übung verbessert ist möglich. Sehr klar ist: Ich habe mein Deutsch durch viel Übung verbessert. Durch passt gut zu Prozessen, Wegen und Ursachen.",
+"display": {
+"body": "durch = through, by means of: durch den Park, durch Training.\ndurch 表示穿过内部，或通过某种方式/原因。",
+"facts": [
+"Beispiel: Wir gehen durch den Park.｜例句：我们穿过公园。",
+"Beispiel: Ich lerne durch Übung.｜例句：我通过练习学习。",
+"Fehler: über den Tunnel -> Richtig: durch den Tunnel.｜错误：über den Tunnel -> 正确：durch den Tunnel。"
+],
+"keywords": [
+"prepositions",
+"durch",
+"movement"
+]
+}
+},
+{
+"id": "wegen_reason_part1",
+"headline": "wegen für Grund",
+"narration": "Wegen bedeutet: because of. Es nennt einen Grund und steht in Standarddeutsch meistens mit Genitiv. Sagen Sie: wegen des Wetters, wegen der Arbeit, wegen eines Problems. Beispiel: Wegen des Regens bleiben wir zu Hause. Beispiel: Ich komme später wegen eines Termins. In der gesprochenen Sprache hört man oft Dativ, zum Beispiel wegen dem Wetter. Für Prüfungen und gutes Standarddeutsch ist Genitiv sicherer. Ein häufiger Fehler ist: wegen ich krank bin. Richtig: weil ich krank bin, oder wegen meiner Krankheit. Wegen steht vor einem Nomen, nicht vor einem ganzen Satz. Nutzen Sie weil für Sätze und wegen für Nomen.",
+"display": {
+"body": "wegen = because of + noun: wegen des Regens, wegen der Arbeit.\nwegen 表示原因，后接名词；标准德语常用二格。",
+"facts": [
+"Beispiel: Wegen des Regens bleiben wir zu Hause.｜例句：因为下雨，我们待在家。",
+"Beispiel: Ich komme wegen eines Termins später.｜例句：因为有预约，我晚点来。",
+"Fehler: wegen ich krank bin -> Richtig: weil ich krank bin.｜错误：wegen ich krank bin -> 正确：weil ich krank bin。"
+],
+"keywords": [
+"prepositions",
+"wegen",
+"reason"
+]
+}
+},
+{
+"id": "trotz_contrast_part1",
+"headline": "trotz für Gegensatz",
+"narration": "Trotz bedeutet: obwohl etwas dagegen spricht. Es steht in Standarddeutsch meistens mit Genitiv. Sagen Sie: trotz des Regens, trotz der Probleme, trotz guter Noten. Beispiel: Trotz des schlechten Wetters gehen wir spazieren. Beispiel: Sie hat trotz wenig Zeit gelernt. Trotz zeigt einen Gegensatz zwischen Erwartung und Wirklichkeit. Ein häufiger Fehler ist: trotz es regnet. Richtig: obwohl es regnet, oder trotz des Regens. Noch ein Fehler: wegen des Regens gehen wir spazieren, wenn der Regen eigentlich ein Hindernis ist. Richtig: Trotz des Regens gehen wir spazieren. Wegen nennt den Grund. Trotz nennt ein Hindernis, das nicht stoppt.",
+"display": {
+"body": "trotz = despite + noun: trotz des Regens, trotz der Probleme.\ntrotz 表示尽管，后接名词；标准德语常用二格。",
+"facts": [
+"Beispiel: Trotz des Regens gehen wir raus.｜例句：尽管下雨，我们还是出去。",
+"Beispiel: Sie arbeitet trotz Stress weiter.｜例句：尽管有压力，她继续工作。",
+"Fehler: trotz es regnet -> Richtig: obwohl es regnet oder trotz des Regens.｜错误：trotz es regnet -> 正确：obwohl es regnet 或 trotz des Regens。"
+],
+"keywords": [
+"prepositions",
+"trotz",
+"contrast"
+]
+}
+},
+{
+"id": "waehrend_time_part1",
+"headline": "während für Gleichzeitigkeit",
+"narration": "Während bedeutet: in der Zeit von. Als Präposition steht es in Standarddeutsch meistens mit Genitiv. Sagen Sie: während des Meetings, während der Fahrt, während des Sommers. Beispiel: Während des Unterrichts mache ich Notizen. Beispiel: Während der Reise war ich oft müde. Während kann auch eine Konjunktion sein: Während ich koche, hört sie Musik. Ein häufiger Fehler ist: während ich des Meetings. Richtig: während des Meetings, oder während ich im Meeting bin. Noch ein Fehler: Ich habe während drei Stunden gelernt. Richtig: Ich habe drei Stunden lang gelernt, oder ich habe für drei Stunden gelernt. Während sagt wann, nicht wie lange.",
+"display": {
+"body": "während = during + noun, or while + sentence: während des Meetings.\nwährend 表示在某期间，或当某事发生时。",
+"facts": [
+"Beispiel: Während des Kurses mache ich Notizen.｜例句：上课期间我做笔记。",
+"Beispiel: Während ich koche, hört sie Musik.｜例句：我做饭时，她听音乐。",
+"Fehler: während drei Stunden -> Richtig: drei Stunden lang.｜错误：während drei Stunden -> 正确：drei Stunden lang。"
+],
+"keywords": [
+"prepositions",
+"waehrend",
+"time"
+]
+}
+}
+]
+}
+]

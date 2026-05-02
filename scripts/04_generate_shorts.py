@@ -34,6 +34,13 @@ FPS = 6
 INTRO_SECONDS = 0.8
 OUTRO_SECONDS = 0.8
 MAX_SHORT_SECONDS = float(os.environ.get("SHORTS_MAX_SECONDS", "59.0"))
+SYNC_MODE = os.environ.get("SHORTS_SYNC_MODE", "0") == "1"
+ENFORCE_MAX_SECONDS = os.environ.get("SHORTS_ENFORCE_MAX_SECONDS", "1") == "1"
+DISPLAY_BODY_FIELD = os.environ.get("SHORTS_DISPLAY_BODY_FIELD", "takeaway")
+
+if SYNC_MODE:
+    INTRO_SECONDS = float(os.environ.get("SHORTS_SYNC_INTRO_SECONDS", "0.3"))
+    OUTRO_SECONDS = float(os.environ.get("SHORTS_SYNC_OUTRO_SECONDS", "0.3"))
 
 VOICE = os.environ.get("EDGE_TTS_VOICE", "zh-CN-YunjianNeural")
 RATE = os.environ.get("EDGE_TTS_RATE", "-5%")
@@ -72,6 +79,51 @@ class ShortScene:
     source: str
     facts: list[str]
     weight: int
+
+
+def detect_language_key_from_voice(voice_name: str) -> str:
+    value = (voice_name or "").lower()
+    if value.startswith("en-"):
+        return "en"
+    if value.startswith("de-"):
+        return "de"
+    return "zh"
+
+
+LANGUAGE_KEY = detect_language_key_from_voice(VOICE)
+
+LANGUAGE_TEXT = {
+    "zh": {
+        "section_lead": "下面是{section}速览。",
+        "section_outro": "以上是{section}。",
+        "section_focus": "{section}重点如下。",
+        "section_done": "{section}播报结束。",
+        "short_closing": "{section}到这里。关注我，获取每日语言知识短视频。",
+        "cta": "关注我，获取每日语言知识短视频。",
+    },
+    "en": {
+        "section_lead": "Here is your quick {section} lesson.",
+        "section_outro": "That is all for {section}.",
+        "section_focus": "Key points from {section}.",
+        "section_done": "{section} lesson finished.",
+        "short_closing": "That's it for {section}. Follow for daily language lessons.",
+        "cta": "Follow for daily language lessons.",
+    },
+    "de": {
+        "section_lead": "Hier ist deine kurze {section}-Lektion.",
+        "section_outro": "Das war {section}.",
+        "section_focus": "Die wichtigsten Punkte aus {section}.",
+        "section_done": "{section} ist beendet.",
+        "short_closing": "Das war's für {section}. Folge für tägliche Sprachlernclips.",
+        "cta": "Folge für tägliche Sprachlernclips.",
+    },
+}
+
+
+def localized_text(key: str, section_name: str = "") -> str:
+    bundle = LANGUAGE_TEXT.get(LANGUAGE_KEY, LANGUAGE_TEXT["zh"])
+    template = bundle.get(key, "")
+    return template.format(section=section_name)
 
 
 def slugify(text: str) -> str:
@@ -201,13 +253,19 @@ def get_audio_duration_seconds(audio_path: Path, ffprobe_bin: str) -> float:
 
 
 def section_narration_text(section: NewsSection) -> str:
+    if SYNC_MODE:
+        ordered = [item.script for item in section.items if item.script.strip()]
+        if section.intro.strip():
+            ordered = [section.intro] + ordered
+        return "\n\n".join(ordered)
+
     parts = [
-        f"下面是{section.name}速览。",
+        localized_text("section_lead", section.name),
         section.intro,
     ]
     for item in section.items:
         parts.append(item.script)
-    parts.append(f"以上是{section.name}。")
+    parts.append(localized_text("section_outro", section.name))
     return "\n\n".join(part for part in parts if part.strip())
 
 
@@ -215,7 +273,7 @@ def first_sentence(text: str) -> str:
     value = (text or "").strip()
     if not value:
         return ""
-    parts = re.split(r"(?<=[。！？!?])", value)
+    parts = re.split(r"(?<=[。！？!?\.])\s*", value)
     for part in parts:
         cleaned = part.strip()
         if cleaned:
@@ -233,27 +291,32 @@ def truncate_text(text: str, max_chars: int) -> str:
 def compact_item_line(item, max_chars: int) -> str:
     line = first_sentence(item.takeaway) or first_sentence(item.script)
     line = truncate_text(line, max_chars)
-    return f"{item.headline}。{line}"
+    if LANGUAGE_KEY == "zh":
+        return f"{item.headline}。{line}"
+    return f"{item.headline}. {line}"
 
 
 def build_narration_variants(section: NewsSection) -> list[str]:
+    if SYNC_MODE or not ENFORCE_MAX_SECONDS:
+        return [section_narration_text(section)]
+
     variants = []
 
     # v1: full narration
     variants.append(section_narration_text(section))
 
     # v2: compact, keep all items
-    v2_parts = [f"下面是{section.name}速览。"]
+    v2_parts = [localized_text("section_lead", section.name)]
     for item in section.items:
         v2_parts.append(compact_item_line(item, 52))
-    v2_parts.append(f"以上是{section.name}。")
+    v2_parts.append(localized_text("section_outro", section.name))
     variants.append("\n\n".join(part for part in v2_parts if part.strip()))
 
     # v3: tighter, keep first 3 items
-    v3_parts = [f"{section.name}重点如下。"]
+    v3_parts = [localized_text("section_focus", section.name)]
     for item in section.items[:3]:
         v3_parts.append(compact_item_line(item, 38))
-    v3_parts.append(f"{section.name}播报结束。")
+    v3_parts.append(localized_text("section_done", section.name))
     variants.append("\n\n".join(part for part in v3_parts if part.strip()))
 
     # Deduplicate while keeping order.
@@ -276,6 +339,8 @@ def build_subtitles_from_text(text: str) -> list[str]:
 
 
 def build_scene_specs(section: NewsSection) -> list[ShortScene]:
+    body_field = DISPLAY_BODY_FIELD.strip().lower()
+
     scenes: list[ShortScene] = [
         ShortScene(
             kind="section",
@@ -288,33 +353,43 @@ def build_scene_specs(section: NewsSection) -> list[ShortScene]:
             weight=max(len(section.intro), 20),
         )
     ]
+    if SYNC_MODE:
+        scenes = []
 
     for item in section.items:
+        if body_field == "script":
+            body_text = item.script
+        elif body_field == "takeaway":
+            body_text = item.takeaway or item.script
+        else:
+            body_text = item.takeaway or item.script
+
         scenes.append(
             ShortScene(
                 kind="item",
                 visual=item.visual or "focus",
                 section=section.name,
                 headline=item.headline,
-                body=item.takeaway or item.script,
+                body=body_text,
                 source=item.source,
                 facts=item.facts[:2],
                 weight=max(len(item.script), len(item.headline) + 12, 28),
             )
         )
 
-    scenes.append(
-        ShortScene(
-            kind="closing",
-            visual="recap",
-            section=section.name,
-            headline="小结",
-            body=f"{section.name}到这里。关注我，获取每日新闻短视频。",
-            source="",
-            facts=[],
-            weight=20,
+    if not SYNC_MODE:
+        scenes.append(
+            ShortScene(
+                kind="closing",
+                visual="recap",
+                section=section.name,
+                headline="小结",
+                body=localized_text("short_closing", section.name),
+                source="",
+                facts=[],
+                weight=20,
+            )
         )
-    )
     return scenes
 
 
@@ -621,11 +696,11 @@ def render_section_frames(
     for frame_index in range(total_frames):
         t = frame_index / FPS
 
-        if t < INTRO_SECONDS:
+        if INTRO_SECONDS > 0 and t < INTRO_SECONDS:
             frame = render_background(background, PALETTES["focus"])
             draw = ImageDraw.Draw(frame, "RGBA")
             draw_intro(draw, script, section, fonts)
-        elif t >= total_duration - OUTRO_SECONDS:
+        elif OUTRO_SECONDS > 0 and t >= total_duration - OUTRO_SECONDS and not SYNC_MODE:
             frame = render_background(background, PALETTES["recap"])
             draw = ImageDraw.Draw(frame, "RGBA")
             draw_closing_scene(
@@ -635,7 +710,7 @@ def render_section_frames(
                     visual="recap",
                     section=section.name,
                     headline="感谢观看",
-                    body=f"{section.name}到这里。关注我，获取每日新闻短视频。",
+                    body=localized_text("short_closing", section.name),
                     source="",
                     facts=[],
                     weight=20,
@@ -761,10 +836,7 @@ async def generate_short_for_section(
     video_path = section_dir / f"short_{date_tag}_{index:02d}_{slug}.mp4"
 
     narration_variants = build_narration_variants(section)
-    allowed_narration_seconds = max(
-        8.0,
-        MAX_SHORT_SECONDS - INTRO_SECONDS - OUTRO_SECONDS - 0.2,
-    )
+    allowed_narration_seconds = max(8.0, MAX_SHORT_SECONDS - INTRO_SECONDS - OUTRO_SECONDS - 0.2)
 
     selected_variant = narration_variants[-1]
     selected_duration = 0.0
@@ -774,10 +846,10 @@ async def generate_short_for_section(
         duration = get_audio_duration_seconds(narration_wav, ffprobe_bin)
         selected_variant = text
         selected_duration = duration
-        if duration <= allowed_narration_seconds:
+        if (not ENFORCE_MAX_SECONDS) or duration <= allowed_narration_seconds:
             break
 
-    if selected_duration > allowed_narration_seconds:
+    if ENFORCE_MAX_SECONDS and selected_duration > allowed_narration_seconds:
         speedup_audio_to_target_duration(
             narration_wav,
             narration_sped_wav,
@@ -808,10 +880,16 @@ async def generate_short_for_section(
 
     merge_video(frame_list, audio_wav, video_path, ffmpeg_bin, bgm_path)
     final_duration = get_audio_duration_seconds(audio_wav, ffprobe_bin)
-    print(
-        f"Short duration: {final_duration:.2f}s (target <= {MAX_SHORT_SECONDS:.1f}s), "
-        f"section={section.name}, variant_len={len(selected_variant)}"
-    )
+    if ENFORCE_MAX_SECONDS:
+        print(
+            f"Short duration: {final_duration:.2f}s (target <= {MAX_SHORT_SECONDS:.1f}s), "
+            f"section={section.name}, variant_len={len(selected_variant)}"
+        )
+    else:
+        print(
+            f"Short duration: {final_duration:.2f}s (no max limit), "
+            f"section={section.name}, variant_len={len(selected_variant)}"
+        )
 
     return video_path
 
