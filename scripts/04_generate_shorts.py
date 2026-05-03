@@ -24,6 +24,8 @@ OUTPUT_ROOT = Path(os.environ.get("SHORTS_OUTPUT_DIR", "output/shorts"))
 AUTHORIZED_AUDIO_DIR = Path(
     os.environ.get("SHORTS_AUTHORIZED_AUDIO_DIR", "input/authorized_audio/shorts")
 )
+TEST_ALLOW_ANY_BGM = os.environ.get("SHORTS_TEST_ALLOW_ANY_BGM", "0") == "1"
+TEST_BGM_PATH = Path(os.environ.get("SHORTS_TEST_BGM_PATH", "input/bgm.mp3"))
 AUDIO_EXTENSIONS = {".mp3", ".m4a", ".wav", ".aac", ".flac", ".ogg"}
 LICENSE_SUFFIXES = (".license.txt", ".rights.txt")
 
@@ -154,6 +156,19 @@ def discover_authorized_audio_tracks() -> list[Path]:
         if is_authorized_audio_track(file_path):
             tracks.append(file_path)
     return tracks
+
+
+def resolve_shorts_bgm_tracks() -> list[Path]:
+    if TEST_ALLOW_ANY_BGM:
+        if TEST_BGM_PATH.exists():
+            print(f"TEST MODE: Using non-verified shorts BGM: {TEST_BGM_PATH}")
+            return [TEST_BGM_PATH]
+        print(
+            "TEST MODE enabled but test BGM not found; narration-only output. "
+            f"Expected: {TEST_BGM_PATH}"
+        )
+        return []
+    return discover_authorized_audio_tracks()
 
 
 def wrap_cjk_text(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
@@ -900,8 +915,10 @@ async def main():
     ffprobe_bin = require_executable("ffprobe")
 
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
-    authorized_tracks = discover_authorized_audio_tracks()
-    if authorized_tracks:
+    authorized_tracks = resolve_shorts_bgm_tracks()
+    if authorized_tracks and TEST_ALLOW_ANY_BGM:
+        print("Shorts BGM source: TEST mode (non-verified track)")
+    elif authorized_tracks:
         print(f"Authorized shorts BGM tracks: {len(authorized_tracks)}")
     else:
         print(
